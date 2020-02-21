@@ -2,8 +2,15 @@
 # currently.
 
 class Player(): 
-    def __init__(self, room, name): 
-        room = self.room
+    def __init__(self, current_room, name): 
+        current_room = self.current_room
         name = self.name
 
-    def 
+    def get_score(self): 
+        return self.current_room
+    
+    def get_name(self): 
+        return self.name
+
+        
+    
