@@ -3,15 +3,15 @@
 
 
 class Room:
-    name = ''
-    description = ''
+    name = ""
+    description = ""
 
     def __init__(self, name, description):
         name = self.name
         description = self.description
 
     def get_name(self):
-        return 'current room: ' + self.name
+        return "current room: " + self.name
 
     def get_description(self):
-        return 'description: ' + self.description
+        return "description: " + self.description
