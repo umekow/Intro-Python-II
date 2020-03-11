@@ -1,5 +1,5 @@
-from room import Room
 from player import Player
+from room import Room
 
 # Purpose: Allows player to move between rooms
 
