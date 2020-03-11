@@ -4,7 +4,6 @@ from player import Player
 # Purpose: Allows player to move between rooms
 
 
-
 # Declare all the rooms
 
 room = {
@@ -27,11 +26,9 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
-
-
 # Link rooms together
 
-# 
+#
 
 #
 # Main
@@ -55,15 +52,14 @@ user_player = Player(username, room['outside'])
 # If the user enters "q", quit the game.
 user_input = ''
 
+
 def get_user_input():
     return input("Next move (press 'q' to quit): ")
-    
-    
+
 
 print("This a game where you can move to different rooms. Press 'n' to move north. Press 's' to move south. Press 'e' to move east. Press 'w' to move west. Press 'q' to quit.")
 while user_input != "q":
     print(user_player.get_current_room)
-    user_input = get_user_input() 
+    user_input = get_user_input()
 
 print("Exited game")
-    
