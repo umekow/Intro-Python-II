@@ -1,16 +1,20 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
-class Player(): 
-    def __init__(self, current_room, name): 
-        current_room = self.current_room
-        name = self.name
+from room import Room
 
-    def get_score(self): 
-        return self.current_room
+
+class Player():
+
+
+    def __init__(self, name, current_room = None): 
+        
+        name = self.name
     
     def get_name(self): 
-        return self.name
+        return "Player's name: " + self.name
 
-        
+    def get_current_room(self):
+        return "You are currently in : " + self.current_room.get_name()
+
     
