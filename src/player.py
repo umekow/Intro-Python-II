@@ -8,9 +8,8 @@ class Player():
 
 
     def __init__(self, name, current_room = None): 
-        
-        name = self.name
-    
+        self.name = name
+        self.current_room = current_room
     def get_name(self): 
         return "Player's name: " + self.name
 

@@ -6,9 +6,11 @@
 class Room: 
     name = ''
     description = ''
-    def __init__(self, name, description): 
-        name = self.name
-        description = self.description
+    def __init__(self, name, description, n_to, s_to, w_to, e_to): 
+        self.name = name 
+        self.description = description
+
+
 
     def get_name(self): 
         return 'current room: ' + self.name
