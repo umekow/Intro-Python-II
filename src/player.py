@@ -8,12 +8,16 @@ class Player():
     def __init__(self, name, current_room, items = None): 
         self.name = name
         self.current_room = current_room
-        if items == None: 
-            items = []
+        self.items = items
+        if self.items == None: 
+            self.items = []
 
 
-    def change_room(self, direction): 
+    def travel(self, direction): 
         if getattr(self.current_room, f'{direction}_to'): 
-            self.current_room = getattr(self.current_room, f'')
+            self.current_room = getattr(self.current_room, f'{direction}_to')
+        else: 
+            print('\n\n*Thump!!!*\n')
+            print('You walked into a wall. Pick another direction\n\n')
 
     
