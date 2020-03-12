@@ -5,9 +5,11 @@
 
 class Player():
 
-    def __init__(self, name, current_room): 
+    def __init__(self, name, current_room, items = None): 
         self.name = name
         self.current_room = current_room
+        if items == None: 
+            items = []
 
 
     def change_room(self, direction): 
