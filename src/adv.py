@@ -37,10 +37,10 @@ earlier adventurers. The only exit is to the south."""),
 # Main
 #
 
-username = input('Please enter your username: ')
+
 # Make a new player object that is currently in the 'outside' room.
 
-user_player = Player(username, room['outside'])
+user_player = Player(input('Please enter your username: '), room['outside'])
 
 
 # Write a loop that:
@@ -53,17 +53,12 @@ user_player = Player(username, room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-user_input = ''
+while True: 
+    print(user_player.name)
+    print(user_player.current_room.name)
+    print('')
+    print(user_player.current_room.description)
 
-def get_user_input():
-    return input("Next move (press 'q' to quit): ")
-    
-    
-
-print("This a game where you can move to different rooms. Press 'n' to move north. Press 's' to move south. Press 'e' to move east. Press 'w' to move west. Press 'q' to quit.")
-while user_input != "q":
-    print(user_player.get_current_room)
-    user_input = get_user_input() 
-
-print("Exited game")
-    
+    cmd = input('/n~>')    
+    if cmd == 'q': 
+        print('Goodbye')
