@@ -9,13 +9,9 @@ class Player():
         self.name = name
         self.current_room = current_room
 
-    def get_name(self): 
-        return "Player's name: " + self.name
 
-    def get_current_room(self):
-        return "You are currently in : " + self.current_room.get_name()
-
-    def change_room(self): 
-        return ''
+    def change_room(self, direction): 
+        if getattr(self.current_room, f'{direction}_to'): 
+            self.current_room = getattr(self.current_room, f'')
 
     

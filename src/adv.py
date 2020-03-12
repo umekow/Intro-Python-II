@@ -31,6 +31,15 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
+
 # 
 
 #
@@ -59,6 +68,6 @@ while True:
     print('')
     print(user_player.current_room.description)
 
-    cmd = input('/n~>')    
+    cmd = input("You can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit.")    
     if cmd == 'q': 
         print('Goodbye')

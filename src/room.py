@@ -4,9 +4,11 @@
 
 
 class Room: 
-    def __init__(self, name, description): 
+    def __init__(self, name, description, list = None): 
         self.name = name 
         self.description = description
+        if list == None: 
+            list = []
         self.n_to = None
         self.s_to = None
         self.w_to = None
