@@ -20,4 +20,25 @@ class Player():
             print('\n\n*Thump!!!*\n')
             print('You walked into a wall. Pick another direction\n\n')
 
-    
+    def get_items(self): 
+        return [x.name for x in self.items]
+
+
+    def dropItem(self, item):
+        self.items.remove(item)
+        print(f'You dropped off {item.name} in {self.current_room.name}.')
+        self.current_room.add_item(item)
+        print('Your items: ', self.get_items())
+        print(f'Items left in room: ', self.current_room.get_items())
+
+    def pickupItem(self, item): 
+        
+        if item in self.current_room.items: 
+            self.items.append(item)
+            print(f'You picked up {item.name} from {self.current_room.name}')
+            print(f'{item.name}\'s description: {item.description}')
+            self.current_room.remove_item(item)
+            print('Your items: ', self.get_items())
+            print(f'Items left in { self.current_room.name}:', self.current_room.get_items())
+        else:
+            print("This item is not located in this room")
