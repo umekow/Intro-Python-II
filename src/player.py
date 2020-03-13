@@ -25,20 +25,25 @@ class Player():
 
 
     def dropItem(self, item):
-        self.items.remove(item)
-        print(f'You dropped off {item.name} in {self.current_room.name}.')
-        self.current_room.add_item(item)
-        print('Your items: ', self.get_items())
-        print(f'Items left in room: ', self.current_room.get_items())
+        if item in self.items: 
+            self.items.remove(item)
+            print(f'You dropped off {item.name} in {self.current_room.name}.\n')
+            self.current_room.add_item(item)
+            print('Your inventory: ', self.get_items())
+            print(f'Items left in room: ', self.current_room.get_items())
+        else: 
+            print('You are a liar! You do not possess this item')
 
     def pickupItem(self, item): 
         
         if item in self.current_room.items: 
             self.items.append(item)
-            print(f'You picked up {item.name} from {self.current_room.name}')
-            print(f'{item.name}\'s description: {item.description}')
+            print(f'You picked up {item.name} from {self.current_room.name}.\n')
+            print(f'{item.name}\'s description: {item.description}. \n')
             self.current_room.remove_item(item)
             print('Your items: ', self.get_items())
+            print('')
             print(f'Items left in { self.current_room.name}:', self.current_room.get_items())
+            print('')
         else:
-            print("This item is not located in this room")
+            print("This item is not located in this room \n")

@@ -56,7 +56,6 @@ room['narrow'].items = [Item('sword', 'a rusty sword'),  Item('elf', 'He thinks 
 
 user_player = Player(input('Please enter your username: '), room['outside'])
 
-print(user_player.name)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -74,26 +73,35 @@ def list_room_items():
     else:
             print('Items in room: ', user_player.current_room.get_items())
     
+
+def action(action): 
+    if action[0] in ('take', 'pickup', 'remove'):
+        for item in user_player.current_room.items: 
+            if action[1] == item.name:  
+                user_player.pickupItem(item)
+
+    elif action[0] in ('drop', 'leave', 'add'): 
+        for item in user_player.items: 
+            if action[1] == item.name:  
+                user_player.dropItem(item)
+
 cmd = ''
 while cmd != 'q': 
 
     print(user_player.current_room.name, user_player.current_room.description)
     list_room_items()
-    cmd = input("You can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit.")    
+    cmd = input("You can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit. \n You can also pick up or drop off items from different rooms. Please type in 'take [item]' to pick up an item or 'drop [item]'.\n ")    
     if cmd == 'q': 
         print('Goodbye')
     elif cmd in ('n', 's', 'e', 'w'): 
         user_player.travel(cmd)
         print(user_player.current_room.name, user_player.current_room.description)
+        print('')
         list_room_items()
-    
+    elif cmd in ('i', 'inventory'): 
+        print('Your inventory', user_player.get_items())
     elif len(cmd) >= 2: 
-        action = cmd.split()
-        if action[0] in ('take', 'pickup', 'remove'):
-            for item in user_player.current_room.items: 
-                if action[1] == item.name:  
-                    user_player.pickupItem(item)
-        elif action[0] in ('drop', 'leave', 'add'): 
-             for item in user_player.items: 
-                if action[1] == item.name:  
-                    user_player.dropItem(item)
+        action_cmd = cmd.split()
+        action(action_cmd)
+    else: 
+        print('Not a valid command.') 
