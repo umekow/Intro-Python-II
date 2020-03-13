@@ -15,6 +15,12 @@ room = {
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
+    'secret' : Room("Secret Passage", """Where does it lead to?"""), 
+
+    'dungeon': Room("Dungeon", """An array of wolf skulls decorate the walls of the room. The only source of light is 2 inch tall candle stick. Who lit? Keep Going and you may find out"""), 
+
+    'closet': Room("Tiny Closet", """BOO!!\n You thought you saw a ghost coming toward you, but it was just a poster taped to wall"""), 
+
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
@@ -39,8 +45,15 @@ room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
+room['narrow'].e_to = room['dungeon']
+room['dungeon'].s_to = room['closet']
+room['closet'].n_to = room['dungeon']
+room['closet'].s_to = room['secret']
 room['treasure'].s_to = room['narrow']
 
+
+room['closet'].items = [Item('poster', 'A poster of a ghost')]
+room['dungeon'].items = [Item('skull', 'a wolf\'s skull'), Item('candlestick', 'a candlestick that is about to give out')]
 room['outside'].items = [Item('vase', 'a dang vase'), Item('gun', 'a pistol with no bullets'), Item('egg', 'Did it come first?'), Item('rose', 'a dying but beautiful rose')]
 room['foyer'].items = [Item('umbrella', 'its broken!'), Item('basket', 'who would want this?')]
 room['treasure'].items = [Item('empty chest', 'where\'s the cash, man?'), Item('ruby', 'Rubies are a girl\'s bestfriend...wait')]
@@ -94,9 +107,16 @@ while cmd != 'q':
     if cmd == 'q': 
         print('Goodbye')
     elif cmd in ('n', 's', 'e', 'w'): 
-        user_player.travel(cmd)
-        print(user_player.current_room.name, user_player.current_room.description)
-        print('')
+        if user_player.current_room.name == 'Dungeon' and cmd == 's' : 
+            
+            if 'candlestick' in user_player.get_items(): 
+             user_player.travel(cmd)
+            else: 
+                print("It is too dark in there! (go back to find something to light your path)")
+        else: 
+            user_player.travel(cmd)
+            print(user_player.current_room.name, user_player.current_room.description)
+            print('')
         list_room_items()
     elif cmd in ('i', 'inventory'): 
         print('Your inventory', user_player.get_items())
