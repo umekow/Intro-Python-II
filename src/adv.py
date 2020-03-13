@@ -19,7 +19,7 @@ passages run north and east."""),
 
     'dungeon': Room("Dungeon", """An array of wolf skulls decorate the walls of the room. The only source of light is 2 inch tall candle stick. Who lit? Keep Going and you may find out"""), 
 
-    'closet': Room("Tiny Closet", """BOO!!\n You thought you saw a ghost coming toward you, but it was just a poster taped to wall"""), 
+    'closet': Room("Tiny Closet", """BOO!!\n You thought you saw a ghost coming toward you, but it was just a poster taped to a wall """), 
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -68,7 +68,6 @@ room['narrow'].items = [Item('sword', 'a rusty sword'),  Item('elf', 'He thinks 
 # Make a new player object that is currently in the 'outside' room.
 
 user_player = Player(input('Please enter your username: '), room['outside'])
-
 # Write a loop that:
 #
 # * Prints the current room name
@@ -100,17 +99,16 @@ def action(action):
 
 cmd = ''
 while cmd != 'q': 
-
+    
+    cmd = input("You can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit. \n You can also pick up or drop off items from different rooms. Please type in 'take [item]' to pick up an item or 'drop [item]'.\n ")    
     print(user_player.current_room.name, user_player.current_room.description)
     list_room_items()
-    cmd = input("You can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit. \n You can also pick up or drop off items from different rooms. Please type in 'take [item]' to pick up an item or 'drop [item]'.\n ")    
     if cmd == 'q': 
         print('Goodbye')
     elif cmd in ('n', 's', 'e', 'w'): 
         if user_player.current_room.name == 'Dungeon' and cmd == 's' : 
-            
             if 'candlestick' in user_player.get_items(): 
-             user_player.travel(cmd)
+                user_player.travel(cmd)
             else: 
                 print("It is too dark in there! (go back to find something to light your path)")
         else: 
