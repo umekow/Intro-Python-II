@@ -11,14 +11,14 @@ class Monster:
 
 
 class ClosetMonster(Monster):
-    def __init__(self, name, diet='egg'):
+    def __init__(self, name, diet="egg"):
         super().__init__(name, diet)
 
     def speak(self):
-        print('\nRwarrrgh!!!!!!!!! Rwarrargggghh!!!\n')
+        print("\nRwarrrgh!!!!!!!!! Rwarrargggghh!!!\n")
 
     def attack(self, player):
 
         player.health = player.health - 15
-        print(f'{self.name} just bit you with his razor sharp teeth!')
-        print(f'Your took damage!\nYour health: {player.health}')
+        print(f"{self.name} just bit you with his razor sharp teeth!")
+        print(f"Your took damage!\nYour health: {player.health}")
