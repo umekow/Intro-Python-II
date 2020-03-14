@@ -5,44 +5,50 @@ from room import Room
 
 # Purpose: Allows player to move between rooms
 
-
 # Declare all the rooms
 
 room = {
-    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
-    "foyer": Room(
+    "outside":
+    Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "foyer":
+    Room(
         "Foyer",
         """Dim light filters in from the south. Dusty
 passages run north and east.""",
     ),
-    "secret": Room("Secret Passage", """Where does it lead to?"""),
-    "dungeon": Room(
+    "secret":
+    Room("Secret Passage", """Where does it lead to?"""),
+    "dungeon":
+    Room(
         "Dungeon",
         """An array of wolf skulls decorate the walls of the room. The only source of light is 2 inch tall candle stick. Who lit it? Keep Going and you may find out""",
     ),
-    "closet": Room(
+    "closet":
+    Room(
         "Tiny Closet",
         """BOO!!\n You thought you saw a ghost coming toward you, but it was just a poster taped to a wall """,
     ),
-    "overlook": Room(
+    "overlook":
+    Room(
         "Grand Overlook",
         """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
     ),
-    "narrow": Room(
+    "narrow":
+    Room(
         "Narrow Passage",
         """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
     ),
-    "treasure": Room(
+    "treasure":
+    Room(
         "Treasure Chamber",
         """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
     ),
 }
-
 
 # Link rooms together
 
@@ -58,7 +64,6 @@ room["dungeon"].s_to = room["closet"]
 room["closet"].n_to = room["dungeon"]
 room["closet"].s_to = room["secret"]
 room["treasure"].s_to = room["narrow"]
-
 
 room["closet"].items = [Item("poster", "A poster of a ghost")]
 room["dungeon"].items = [
@@ -151,8 +156,8 @@ while cmd != "q":
                         "\n Buga snatched your egg away from you then starts to eat it. \n He turned into a elderly man when he finished his meal and felt bad. \n He gave you a diamond necklace and apologized.\n He explained that he transform into a monster when he is hungry!"
                     )
                     user_player.takeReward(
-                        Item("necklace", "A diamond necklace worth 500000 rubies")
-                    )
+                        Item("necklace",
+                             "A diamond necklace worth 500000 rubies"))
                 else:
                     print(
                         "A tall monster starts attacking you! Looks like he is hungry. "
@@ -165,7 +170,8 @@ while cmd != "q":
                 )
         else:
             user_player.travel(cmd)
-            print(user_player.current_room.name, user_player.current_room.description)
+            print(user_player.current_room.name,
+                  user_player.current_room.description)
             print("")
         list_room_items()
     elif cmd in ("i", "inventory"):
