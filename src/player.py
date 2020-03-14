@@ -11,6 +11,7 @@ class Player():
         self.items = items
         if self.items == None: 
             self.items = []
+        self.health = 100
 
 
     def travel(self, direction): 
@@ -47,3 +48,9 @@ class Player():
             print('')
         else:
             print("This item is not located in this room \n")
+
+    def takeReward(self, item): 
+        self.items.append(item)
+        print(f'Your items: ', self.get_items())
+
+    

@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from monster import ClosetMonster
 
 # Purpose: Allows player to move between rooms
 
@@ -17,7 +18,7 @@ passages run north and east."""),
 
     'secret' : Room("Secret Passage", """Where does it lead to?"""), 
 
-    'dungeon': Room("Dungeon", """An array of wolf skulls decorate the walls of the room. The only source of light is 2 inch tall candle stick. Who lit? Keep Going and you may find out"""), 
+    'dungeon': Room("Dungeon", """An array of wolf skulls decorate the walls of the room. The only source of light is 2 inch tall candle stick. Who lit it? Keep Going and you may find out"""), 
 
     'closet': Room("Tiny Closet", """BOO!!\n You thought you saw a ghost coming toward you, but it was just a poster taped to a wall """), 
 
@@ -64,6 +65,7 @@ room['narrow'].items = [Item('sword', 'a rusty sword'),  Item('elf', 'He thinks 
 # Main
 #
 
+buga = ClosetMonster('Buga')
 
 # Make a new player object that is currently in the 'outside' room.
 
@@ -81,9 +83,9 @@ user_player = Player(input('Please enter your username: '), room['outside'])
 
 def list_room_items():
     if user_player.current_room.items == []: 
-            print(f'There are no items in {user_player.current_room.name}')
+        print(f'There are no items in {user_player.current_room.name}')
     else:
-            print('Items in room: ', user_player.current_room.get_items())
+        print('Items in room: ', user_player.current_room.get_items())
     
 
 def action(action): 
@@ -99,16 +101,30 @@ def action(action):
 
 cmd = ''
 while cmd != 'q': 
-    
-    cmd = input("You can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit. \n You can also pick up or drop off items from different rooms. Please type in 'take [item]' to pick up an item or 'drop [item]'.\n ")    
-    print(user_player.current_room.name, user_player.current_room.description)
-    list_room_items()
+    print('Your health: ', user_player.health)
+    print(f'Current room: {user_player.current_room.name}, {user_player.current_room.description}\nItems in this room:',user_player.current_room.get_items() )
+    print(f'Your items:', user_player.get_items())
+    cmd = input("\n\nYou can move using this game! Press 'n' to travel north, 's' to travel south, 'w' to travel west, 'e' to travel east and 'q' to quit. \nYou can also pick up or drop off items from different rooms. Please type in 'take [item]' to pick up an item or 'drop [item]'.\n ")    
+    print("\n----------------------------\n")
     if cmd == 'q': 
         print('Goodbye')
     elif cmd in ('n', 's', 'e', 'w'): 
-        if user_player.current_room.name == 'Dungeon' and cmd == 's' : 
+        if user_player.current_room.name == 'Dungeon' and cmd == 's':
+
             if 'candlestick' in user_player.get_items(): 
                 user_player.travel(cmd)
+                print('You heard a dud and immediately turned to your left')
+                buga.speak()
+                if 'egg' in user_player.get_items():
+                    print('\n Buga snatched your egg away from you then starts to eat it. \n He turned into a elderly man when he finished his meal and felt bad. \n He gave you a diamond necklace and apologized.\n He explained that he transform into a monster when he is hungry!')
+                    user_player.takeReward(Item('necklace', 'A diamond necklace worth 500000 rubies'))
+                else: 
+                    print('A tall monster starts attacking you! Looks like he is hungry. ')
+                    buga.attack(user_player)
+
+            
+
+                    
             else: 
                 print("It is too dark in there! (go back to find something to light your path)")
         else: 
