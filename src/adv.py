@@ -1,7 +1,7 @@
-from room import Room
-from player import Player
 from item import Item
 from monster import ClosetMonster
+from player import Player
+from room import Room
 
 # Purpose: Allows player to move between rooms
 
